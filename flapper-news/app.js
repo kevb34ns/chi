@@ -10,6 +10,22 @@ var users = require('./routes/users');
 
 var app = express();
 
+// TODO database setup
+var mongoose = require('mongoose');
+mongoose.connect("mongodb://localhost/test");
+var foodSchema = {
+	name: String,
+	type: String,
+	def_expr: String,
+	def_unit: String
+};
+var Food = mongoose.model('Food', foodSchema, 'food');
+app.get('/foodData', function(req, res) {
+	Food.find(function(err, doc) {
+		res.send(doc);
+	});
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

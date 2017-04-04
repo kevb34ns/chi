@@ -1,6 +1,6 @@
 var app = angular.module("flapperNews", ['ui.router']);
 
-app.controller('MainController', ['$scope', 'posts', function($scope, posts) {
+app.controller('MainController', ['$scope', '$http','posts', function($scope, $http, posts) {
 	$scope.posts = posts.posts;
 	$scope.addPost = function() {
 		if(!$scope.title || $scope.title === '') {
@@ -29,6 +29,9 @@ app.controller('MainController', ['$scope', 'posts', function($scope, posts) {
 	$scope.upvotePost = function(post) {
 		post.upvotes++;	
 	};
+	$http.get("http://localhost:3000/foodData").success(function(result) {
+		$scope.food = result;
+	})
 }]);
 
 app.controller('PostsController', ['$scope', '$stateParams', 
