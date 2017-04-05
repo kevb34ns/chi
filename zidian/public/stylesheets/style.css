@@ -1,0 +1,12 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.chinese-chars {
+	font-family: "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", "微软雅黑体", "STXKaiti", "华文楷体", sans-serif;
+}

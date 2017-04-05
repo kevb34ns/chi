@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chinese Dictionary</title>
+
+	<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Bootstrap -->
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+	<link href="/stylesheets/style.css" type="text/css" rel="stylesheet">
+</head>
+<body ng-app="zidian">
+	<div class="page-header">
+		<h1 class="chinese-chars">字典 Chinese Dictionary<h1>
+	</div>
+	<div>
+		<ui-view></ui-view>
+	</div>
+
+<!-- Load Scripts -->
+<!-- AngularJS -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+<script src="/javascripts/angularApp.js"></script>
+
+<!-- ui-router -->
+<script src="http://unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
+</body>
+</html>
