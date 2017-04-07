@@ -10,6 +10,28 @@ var users = require('./routes/users');
 
 var app = express();
 
+// dictionary database API setup
+var mongoose = require('mongoose');
+mongoose.connect("mongodb://localhost/test");
+var entrySchema = {
+	traditional: String,
+	simplified: String,
+	pinyin: String,
+	definitions: [String]
+}
+var entries = mongoose.model('entries', entrySchema, 'dictionary');
+app.get('/api/search/:term', function(req, res) {
+	console.log("Term:" + req.params.term);
+	entries.find({$or: [
+		{traditional: req.params.term}, 
+		{simplified: req.params.term}]},
+		function(err, doc) {
+			if (!err) {
+				res.send(doc);
+			} 
+		})；
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

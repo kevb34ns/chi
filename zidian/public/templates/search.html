@@ -1,0 +1,12 @@
+<div ng-repeat="entry in entries">
+	<span class="chinese-chars">
+		Traditional: {{entry.traditional}}<br>
+		Simplified: {{entry.simplified}}<br>
+	</span>
+	Pinyin: {{entry.pinyin}}<br>
+	Definitions:<br>
+	<div ng-repeat="def in entry.definitions">
+	{{$index + 1}}: {{def}}<br>
+	</div>
+	<br>
+</div>
