@@ -17,6 +17,9 @@ app.controller('SearchController', ['$scope', '$http', '$stateParams', function(
 	$http.get("http://localhost:3000/api/search/" + $stateParams.term)
 		.success(function(result) {
 			$scope.entries = result;
+			angular.forEach($scope.entries, function(entry) {
+				entry.pinyin = pinyinify(entry.pinyin);	
+			});
 		});
 }]);
 

@@ -18,7 +18,7 @@ var entrySchema = {
 	simplified: String,
 	pinyin: String,
 	definitions: [String]
-}
+};
 var entries = mongoose.model('entries', entrySchema, 'dictionary');
 app.get('/api/search/:term', function(req, res) {
 	console.log("Term:" + req.params.term);
@@ -29,7 +29,7 @@ app.get('/api/search/:term', function(req, res) {
 			if (!err) {
 				res.send(doc);
 			} 
-		})；
+		});
 });
 
 // view engine setup
