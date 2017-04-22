@@ -6,14 +6,14 @@ app.controller('MainController', ['$scope', '$window', function($scope, $window)
 		if (!$scope.searchTerm || $scope.searchTerm === '') {
 			return;
 		}
-
-		$window.location.href = '#/search/' + $scope.searchTerm;
+		console.log($scope.searchTerm);
+		$window.location.href = '/search/' + $scope.searchTerm;
 		$scope.searchTerm = '';
 	}
 
 }]);
 
-app.controller('SearchController', ['$scope', '$http', '$stateParams', function($scope, $http, $stateParams) {
+app.controller('SearchController', ['$scope', '$rootScope', '$http', '$stateParams', function($scope, $rootScope, $http, $stateParams) {
 	$http.get("http://localhost:3000/api/search/" + $stateParams.term)
 		.success(function(result) {
 			$scope.entries = result;
@@ -21,12 +21,17 @@ app.controller('SearchController', ['$scope', '$http', '$stateParams', function(
 				entry.pinyin = pinyinify(entry.pinyin);	
 			});
 		});
+
+	$rootScope.$on('$stateChangeStart', function(event, to, toParams, from, fromParams) {
+        console.log("hello");
+    });
 }]);
 
 app.config([
 	'$stateProvider',
 	'$urlRouterProvider',
-	function($stateProvider, $urlRouterProvider) {
+	'$locationProvider',
+	function($stateProvider, $urlRouterProvider, $locationProvider) {
 		$stateProvider
 			.state('home', {
 				url:'/home',
@@ -39,5 +44,6 @@ app.config([
 				controller: 'SearchController'
 			});
 
-		$urlRouterProvider.otherwise('home');
+		$urlRouterProvider.otherwise('/home');
+		// $locationProvider.hashPrefix('!').html5Mode(true); //TODO resolve # issue
 }]);
