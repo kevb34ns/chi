@@ -1,19 +1,38 @@
 var app = angular.module("zidian", ['ui.router']);
 
-app.controller('MainController', ['$scope', '$window', function($scope, $window) {
+app.factory('DataService', function(){
+	var simplifiedCheck = true;
+	if (typeof(Storage) !== 'undefined') {
+		var val = localStorage.getItem("isSimplified");
+		if (val === 'false') {
+			simplifiedCheck = false;
+		}
+	}
+
+	return {
+		isSimplified: simplifiedCheck
+	};
+});
+
+app.controller('MainController', ['$scope', '$window', 'DataService', function($scope, $window, DataService) {
+
+	$scope.isSimplified = DataService.isSimplified;
 
 	$scope.search = function(searchTerm) {
 		if (!$scope.searchTerm || $scope.searchTerm === '') {
 			return;
 		}
 		console.log($scope.searchTerm);
-		$window.location.href = '/search/' + $scope.searchTerm;
+		$window.location.href = '#/search/' + $scope.searchTerm;
 		$scope.searchTerm = '';
 	}
 
 }]);
 
-app.controller('SearchController', ['$scope', '$rootScope', '$http', '$stateParams', function($scope, $rootScope, $http, $stateParams) {
+app.controller('SearchController', ['$scope', '$rootScope', '$http', '$stateParams', 'DataService', function($scope, $rootScope, $http, $stateParams, DataService) {
+
+	$scope.isSimplified = DataService.isSimplified;
+
 	$http.get("http://localhost:3000/api/search/" + $stateParams.term)
 		.success(function(result) {
 			$scope.entries = result;
