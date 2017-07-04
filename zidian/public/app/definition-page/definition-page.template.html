@@ -1,0 +1,11 @@
+<div class="chinese-chars def-term col-md-4">
+  {{ $ctrl.entries[0].traditional }}
+</div>
+<div class="col-md-8">
+  <div ng-repeat="entry in $ctrl.entries">
+    <h3>{{ entry.pinyin }}</h3>
+    <div ng-repeat="def in entry.definitions">
+      <strong>{{ $index + 1 }}</strong>  {{ def }}<br>
+    </div>
+  </div>
+</div>

@@ -1,18 +1,45 @@
+// TODO rename to APIService in order to reflect that it does more than search, it is for the whole api
 angular.module('app')
-.factory('SearchService', ['$http', function($http) {
-	return {
-		/**
-		 * Returns an array of results for the specified query.
-		 * @param searchTerm The term to query the database for.
-		 * @return an array of objects, each of which represents a term.
-		 */
-		search: function(searchTerm) {
-			return $http.get("http://localhost:3000/api/search/" + searchTerm)
-        .then(
-				  function(response) {
-				  	return response.data;
-				  }
-			  )
-		}
-	}
-}]);
+.factory('SearchService', ['$http', 'CacheService', 
+  function($http, CacheService) {
+
+    /**
+     * Saves an array of dictionary entry objects to local storage. 
+     * @param {Object[]} entries An array of dictionary objects.
+     */
+    function cacheEntries(entries) {
+    
+    }
+
+    return {
+      /**
+       * Returns an array of results for the specified query.
+       * @param {String} query The query to search the database for.
+       * @return an array of objects, each of which represents a entry.
+       */
+      search: function(query) {
+        return $http.get("http://localhost:3000/api/search/" + query)
+          .then(
+            function(response) {
+              return response.data;
+            }
+          )
+      },
+      
+      /**
+       * Returns an array with all the entries for a specified term.
+       * @param {String} term The term to retrieve entries for.
+       * @return an array of objects, each of which represents an entry.
+       */
+      getTerm: function(term) {
+        console.log("http://localhost:3000/api/term/" + term);
+        return $http.get("http://localhost:3000/api/term/" + term)
+          .then(
+            function(response) {
+              return response.data;
+            }
+          )
+      }
+    }
+  }
+]);

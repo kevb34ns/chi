@@ -1,24 +1,32 @@
 var searchController = [
-  '$rootScope', '$routeParams', 
-  `PreferencesService`, 'SearchService',
-  function($rootScope, $routeParams, 
-      PreferencesService, SearchService) {
+  '$routeParams', '$location', `CacheService`, 'SearchService',
+  function($routeParams, $location, CacheService, SearchService) {
     
     var ctrl = this;
-    ctrl.isSimplified = PreferencesService.isSimplified;
+    ctrl.isSimplified = CacheService.isSimplified;
 
-    SearchService.search($routeParams.term)
+    ctrl.query = $routeParams.query;
+
+    SearchService.search($routeParams.query)
       .then(function(result) {
         ctrl.entries = result;
         angular.forEach(ctrl.entries, function(entry) {
           entry.pinyin = pinyinify(entry.pinyin);
         })
-      })
+      });
+
+    ctrl.goToDefinition = function(term) {
+      if (!term || term === '') {
+        return;
+      }
+
+      $location.path('/definition/' + term);
+    }
   }
-]
+];
 
 angular.module('resultsPage')
 .component('resultsPage', {
   templateUrl: '/app/results-page/results-page.template.html',
   controller: searchController
-})
+});

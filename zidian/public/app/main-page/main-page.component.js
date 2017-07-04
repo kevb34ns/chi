@@ -1,8 +1,8 @@
-var mainController = ['$location', 'PreferencesService',
-  function($location, PreferencesService) {
+var mainController = ['$location', 'CacheService',
+  function($location, CacheService) {
     var ctrl = this;
 
-    ctrl.isSimplified = PreferencesService.isSimplified;
+    ctrl.isSimplified = CacheService.isSimplified;
 
     ctrl.search = function(searchTerm) {
       if (!ctrl.searchTerm || ctrl.searchTerm === '') {

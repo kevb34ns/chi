@@ -1,5 +1,8 @@
+<div class="page-header chinese-chars">
+	<h1><small>Results for '{{ $ctrl.query }}'</small>
+</div>
 <div ng-repeat="entry in $ctrl.entries">
-	<span class="chinese-chars">
+	<span ng-click="$ctrl.goToDefinition(entry.simplified)" class="chinese-chars">
 		Traditional: {{entry.traditional}}<br>
 		Simplified: {{entry.simplified}}<br>
 	</span>

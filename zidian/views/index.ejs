@@ -11,15 +11,7 @@
 </head>
 <body ng-app="app">
   <div id="outer-container" class="col-md-8 col-md-offset-2">
-    <div class="page-header">
-      <h1 class="chinese-chars">中文字典 Chinese Dictionary</h1>
-    </div>
-    <div>
-      <section>
-        <input type="checkbox"> Traditional
-      </section>
-      <div ng-view></div>
-    </div>
+    <div ng-view></div>
   </div>
 
 <!-- Load Scripts -->
@@ -32,7 +24,7 @@
 <script src="/app/app.module.js"></script>
 <script src="/app/app.config.js"></script>
 <!-- Core -->
-<script src="/app/core/services/preferences.service.js"></script>
+<script src="/app/core/services/cache.service.js"></script>
 <script src="/app/core/services/search.service.js"></script>
 <!-- Main Page -->
 <script src="/app/main-page/main-page.module.js"></script>
@@ -40,6 +32,9 @@
 <!-- Results Page -->
 <script src="/app/results-page/results-page.module.js"></script>
 <script src="/app/results-page/results-page.component.js"></script>
+<!-- Definition Page -->
+<script src="/app/definition-page/definition-page.module.js"></script>
+<script src="/app/definition-page/definition-page.component.js"></script>
 <!-- pinyinify -->
 <script src="/javascripts/pinyinify.js"></script>
 </body>

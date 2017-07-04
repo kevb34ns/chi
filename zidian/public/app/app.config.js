@@ -10,8 +10,11 @@ angular.module('app')
       .when('/', {
         template: '<main-page></main-page>'
       })
-      .when('/search/:term', {
+      .when('/search/:query', {
         template: '<results-page></results-page>'
+      })
+      .when('/definition/:term', {
+        template: '<definition-page></definition-page>'
       })
       .otherwise('/');
   }

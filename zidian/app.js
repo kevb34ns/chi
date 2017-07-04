@@ -20,7 +20,21 @@ var entrySchema = {
 	definitions: [String]
 };
 var entries = mongoose.model('entries', entrySchema, 'dictionary');
-app.get('/api/search/:term', function(req, res) {
+
+// TODO search query api
+app.get('/api/search/:query', function(req, res) {
+	entries.find({$or: [
+		{traditional: req.params.query}, 
+		{simplified: req.params.query}]},
+		function(err, doc) {
+			if (!err) {
+				res.send(doc);
+			} 
+		});
+});
+
+// entry object api
+app.get('/api/term/:term', function(req, res) {
 	console.log("Term:" + req.params.term);
 	entries.find({$or: [
 		{traditional: req.params.term}, 
