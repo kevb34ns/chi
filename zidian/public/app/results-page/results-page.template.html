@@ -1,3 +1,4 @@
+<nav-bar></nav-bar>
 <div class="page-header chinese-chars">
 	<h1><small>Results for <strong>{{ $ctrl.query }}</strong></small>
 </div>
@@ -8,8 +9,10 @@
 	</span>
 	Pinyin: {{entry.pinyin}}<br>
 	Definitions:<br>
-	<div ng-repeat="def in entry.definitions">
-		{{$index + 1}}: {{def}}<br>
+	<div>
+		<span ng-repeat="def in entry.definitions">
+			<strong>{{$index + 1}}.</strong> {{def}} 
+		</span>
 	</div>
 	<br>
 </div>

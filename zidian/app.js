@@ -14,36 +14,38 @@ var app = express();
 var mongoose = require('mongoose');
 mongoose.connect("mongodb://localhost/test");
 var entrySchema = {
-	traditional: String,
-	simplified: String,
-	pinyin: String,
-	definitions: [String]
+  traditional: String,
+  simplified: String,
+  pinyin: String,
+  definitions: [String]
 };
 var entries = mongoose.model('entries', entrySchema, 'dictionary');
 
-// TODO search query api
 app.get('/api/search/:query', function(req, res) {
-	entries.find({$or: [
-		{traditional: req.params.query}, 
-		{simplified: req.params.query}]},
-		function(err, doc) {
-			if (!err) {
-				res.send(doc);
-			} 
-		});
+  entries.find({$text: {
+      $search: req.params.query,
+      $language: "en"
+    }},
+    { "score": { "$meta": "textScore" } },	
+    function(err, doc) {
+      if (!err) {
+        res.send(doc);
+      } 
+    })
+    .sort({ "score": { "$meta": "textScore"}});
 });
 
 // entry object api
 app.get('/api/term/:term', function(req, res) {
-	console.log("Term:" + req.params.term);
-	entries.find({$or: [
-		{traditional: req.params.term}, 
-		{simplified: req.params.term}]},
-		function(err, doc) {
-			if (!err) {
-				res.send(doc);
-			} 
-		});
+  console.log("Term:" + req.params.term);
+  entries.find({$or: [
+    {traditional: req.params.term}, 
+    {simplified: req.params.term}]},
+    function(err, doc) {
+      if (!err) {
+        res.send(doc);
+      } 
+    });
 });
 
 // view engine setup
