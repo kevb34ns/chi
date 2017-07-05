@@ -1,11 +1,11 @@
 var definitionController = [
-  '$routeParams', 'CacheService', 'SearchService',
-  function($routeParams, CacheService, SearchService) {
+  '$routeParams', 'CacheService', 'APIService',
+  function($routeParams, CacheService, APIService) {
 
     var ctrl = this;
-    ctrl.isSimplified = CacheService.isSimplified;
+    ctrl.isSimplified = CacheService.isSimplified();
 
-    SearchService.getTerm($routeParams.term)
+    APIService.getTerm($routeParams.term)
       .then(function(result) {
         ctrl.entries = result;
         angular.forEach(ctrl.entries, function(entry) {

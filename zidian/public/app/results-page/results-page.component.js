@@ -1,13 +1,13 @@
 var searchController = [
-  '$routeParams', '$location', `CacheService`, 'SearchService',
-  function($routeParams, $location, CacheService, SearchService) {
+  '$routeParams', '$location', `CacheService`, 'APIService',
+  function($routeParams, $location, CacheService, APIService) {
     
     var ctrl = this;
-    ctrl.isSimplified = CacheService.isSimplified;
+    ctrl.isSimplified = CacheService.isSimplified();
 
     ctrl.query = $routeParams.query;
 
-    SearchService.search($routeParams.query)
+    APIService.search($routeParams.query)
       .then(function(result) {
         ctrl.entries = result;
         angular.forEach(ctrl.entries, function(entry) {

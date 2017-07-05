@@ -1,6 +1,5 @@
-// TODO rename to APIService in order to reflect that it does more than search, it is for the whole api
 angular.module('app')
-.factory('SearchService', ['$http', 'CacheService', 
+.factory('APIService', ['$http', 'CacheService', 
   function($http, CacheService) {
 
     /**
@@ -18,6 +17,7 @@ angular.module('app')
        * @return an array of objects, each of which represents a entry.
        */
       search: function(query) {
+        // TODO you must find a way to point this url to a constant address, otherwise it won't work on any machine except localhost
         return $http.get("http://localhost:3000/api/search/" + query)
           .then(
             function(response) {

@@ -1,5 +1,5 @@
 <div class="chinese-chars def-term col-md-4">
-  {{ $ctrl.entries[0].traditional }}
+  <term-display entry='$ctrl.entries[0]' is-simplified='$ctrl.isSimplified'></term-display>
 </div>
 <div class="col-md-8">
   <div ng-repeat="entry in $ctrl.entries">

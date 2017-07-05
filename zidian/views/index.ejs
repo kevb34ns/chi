@@ -11,6 +11,7 @@
 </head>
 <body ng-app="app">
   <div id="outer-container" class="col-md-8 col-md-offset-2">
+    <mode-toggle></mode-toggle>
     <div ng-view></div>
   </div>
 
@@ -26,6 +27,7 @@
 <!-- Core -->
 <script src="/app/core/services/cache.service.js"></script>
 <script src="/app/core/services/search.service.js"></script>
+<script src="/app/core/mode-toggle/mode-toggle.component.js"></script>
 <!-- Main Page -->
 <script src="/app/main-page/main-page.module.js"></script>
 <script src="/app/main-page/main-page.component.js"></script>
@@ -35,6 +37,7 @@
 <!-- Definition Page -->
 <script src="/app/definition-page/definition-page.module.js"></script>
 <script src="/app/definition-page/definition-page.component.js"></script>
+<script src="/app/definition-page/term-display.component.js"></script>
 <!-- pinyinify -->
 <script src="/javascripts/pinyinify.js"></script>
 </body>

@@ -2,7 +2,7 @@ var mainController = ['$location', 'CacheService',
   function($location, CacheService) {
     var ctrl = this;
 
-    ctrl.isSimplified = CacheService.isSimplified;
+    ctrl.isSimplified = CacheService.isSimplified();
 
     ctrl.search = function(searchTerm) {
       if (!ctrl.searchTerm || ctrl.searchTerm === '') {
