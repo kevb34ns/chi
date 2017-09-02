@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 16px Helvetica, Arial, sans-serif;
   background: #f4f4f4;
   color: #3b3e41;
@@ -7,6 +6,11 @@ body {
 
 a {
   color: #00B7FF;
+}
+
+a, a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
 }
 
 .card-view { /** TODO example, may not be needed */
@@ -30,8 +34,9 @@ a {
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 6rem;
+  height: 3rem;
+  margin: 0;
 }
 
 .switch input {
@@ -45,7 +50,7 @@ a {
   left: 0;
   right: 0;
   bottom: 0;
-  border-radius: 34px;
+  border-radius: 3rem;
   background-color: #337ab7;
   -webkit-transition: .4s;
   transition: .4s;
@@ -54,10 +59,10 @@ a {
 .slider:before {
   position:absolute;
   content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
+  height: 2.5rem;
+  width: 2.5rem;
+  left: .25rem;
+  bottom: .25rem;
   border-radius: 50%;
   background-color: white;
   -webkit-transition: .4s;
@@ -73,16 +78,61 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+  -webkit-transform: translateX(3rem);
+  -ms-transform: translateX(3rem);
+  transform: translateX(3rem);
+}
+
+nav-bar {
+  position: sticky;
+  -webkit-position: sticky;
+  height: 6rem;
+  display: block;
 }
 
 #nav-bar {
-  background-color: rgba(255, 255, 255, 0.9);
-  position: sticky;
-  -webkit-position: sticky;
+  background-color: rgba(255, 255, 255, 1.0);
+  position: fixed;
   top: 0px;
-  height: 100px;
+  left: 0px;
+  right: 0px;
+  height: 6rem;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, .10); 
+  display: flex;
+}
+
+nav-bar search-field {
+  flex: auto;
+  align-self: center;
+  padding-right: 2rem;
+}
+
+nav-bar search-field input {
+  border-radius: 3rem !important;
+}
+
+#logo-box {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  font-size: 3rem;
+  height: 100%;
+  cursor: pointer;
+  user-select: none;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+#logo-box:active {
+  background-color: rgba(0, 0, 0, 0.25);
+  background-blend-mode: multiply;
+}
+
+nav-bar mode-toggle {
+  align-self: center;
+  margin-right: 2rem;
+}
+
+#main-page {
+  margin-top: 12rem;
 }
