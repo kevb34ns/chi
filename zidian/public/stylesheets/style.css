@@ -107,10 +107,6 @@ nav-bar search-field {
   padding-right: 2rem;
 }
 
-nav-bar search-field input {
-  border-radius: 3rem !important;
-}
-
 #logo-box {
   flex: 0 0 auto;
   display: flex;
