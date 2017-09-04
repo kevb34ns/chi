@@ -88,23 +88,24 @@ nav-bar {
   -webkit-position: sticky;
   height: 6rem;
   display: block;
+  margin-bottom: 2rem;
 }
 
 #nav-bar {
-  background-color: rgba(255, 255, 255, 1.0);
+  background-color: rgb(30, 100, 131);
   position: fixed;
   top: 0px;
   left: 0px;
   right: 0px;
   height: 6rem;
-  box-shadow: 0 0 4px 0 rgba(0, 0, 0, .10); 
+  box-shadow: 0 1px 2px 2px rgba(0, 0, 0, .20); 
   display: flex;
 }
 
 nav-bar search-field {
   flex: auto;
   align-self: center;
-  padding-right: 2rem;
+  padding: 0 1rem 0 1rem;
 }
 
 #logo-box {
@@ -117,6 +118,7 @@ nav-bar search-field {
   user-select: none;
   padding-left: 2rem;
   padding-right: 2rem;
+  color: white;
 }
 
 #logo-box:active {
