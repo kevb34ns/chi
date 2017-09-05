@@ -1,0 +1,47 @@
+nav-bar {
+  position: sticky;
+  -webkit-position: sticky;
+  height: 6rem;
+  display: block;
+  margin-bottom: 2rem;
+}
+
+#nav-bar {
+  background-color: rgb(30, 100, 131);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 6rem;
+  box-shadow: 0 0 4px 2px rgba(0, 0, 0, .50); 
+  display: flex;
+}
+
+nav-bar search-field {
+  flex: auto;
+  align-self: center;
+  padding: 0 1rem 0 1rem;
+}
+
+#logo-box {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  font-size: 3rem;
+  height: 100%;
+  cursor: pointer;
+  user-select: none;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  color: white;
+}
+
+#logo-box:active {
+  background-color: rgba(0, 0, 0, 0.25);
+  background-blend-mode: multiply;
+}
+
+nav-bar mode-toggle {
+  align-self: center;
+  margin-right: 2rem;
+}

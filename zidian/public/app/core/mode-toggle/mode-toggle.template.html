@@ -1,48 +1,8 @@
-<!-- <label class="switch">
-  <input type="checkbox">
-  <div class="slider"></div>
-</label> -->
-
 <!-- TODO doesn't actually change between traditional and simplified or even save the setting ATM, just sets it in this controller -->
-<div ng-click="$ctrl.isSimplified = !$ctrl.isSimplified">
-  <span ng-show="$ctrl.isSimplified" class="mode-fade">简<span class="hidden-xs hidden-sm">&nbsp;Simplified&nbsp;</span></span>
-  <span ng-show="!$ctrl.isSimplified" class="mode-fade">繁<span class="hidden-xs hidden-sm">&nbsp;Traditional</span></span>
+
+<div ng-switch on="$ctrl.isSimplified" ng-click="$ctrl.isSimplified = !$ctrl.isSimplified">
+  <div ng-switch-when="true" class="mode-fade">简<span class="hidden-xs hidden-sm">&nbsp;Simplified&nbsp;</span></div>
+  <div ng-switch-when="false" class="mode-fade">繁<span class="hidden-xs hidden-sm">&nbsp;Traditional</span></div>
 </div>
 
-<style>
-/* TODO move to component css file */
-  mode-toggle {
-    font-weight: bold;
-  }
-
-  mode-toggle div {
-    height: 3.4rem;
-    padding: 0 1rem 0 1rem;
-    border-radius: 3rem;
-    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, .1);
-    /* background-color: rgba(0, 0, 0, 0.05); */
-    background-color: rgba(200, 50, 50, 1);
-    color: white;
-    cursor: pointer;
-    user-select: none;
-    display: flex;
-    align-items: center;
-  }
-
-  mode-toggle .mode-fade {
-    opacity: 1;
-  }
-
-  mode-toggle .mode-fade.ng-hide {
-    opacity: 0;
-  }
-
-  mode-toggle .mode-fade.ng-hide-add {
-    transition: all 100ms linear;
-  }
-
-
-  mode-toggle .mode-fade.ng-hide-remove {
-    transition: all 100ms linear;
-  }
-</style>
+<link href="/app/core/mode-toggle/mode-toggle.style.css" type="text/css" rel="stylesheet">

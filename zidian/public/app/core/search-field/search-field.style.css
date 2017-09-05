@@ -1,4 +1,4 @@
-input {
+search-field input {
   border-radius: 3rem 0 0 3rem !important;
   border-right-width: 0 !important;
   box-shadow: none !important;
@@ -27,4 +27,11 @@ search-field .input-group-btn {
   background-size: 100%;
   height: 2rem;
   width: 2rem;
+}
+
+
+@media only screen and (max-width: 768px) {
+  search-field input {
+    height: 4rem !important;
+  }
 }
