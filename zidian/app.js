@@ -33,6 +33,7 @@ app.get('/api/search/:query', function(req, res) {
       } 
     })
     .sort({ "score": { "$meta": "textScore"}});
+
 });
 
 // entry object api
@@ -43,6 +44,7 @@ app.get('/api/term/:term', function(req, res) {
     {simplified: req.params.term}]},
     function(err, doc) {
       if (!err) {
+        console.log (doc);
         res.send(doc);
       } 
     });

@@ -4,17 +4,54 @@
     <meta charset="UTF-8">
     <title>Chi Manager</title>
   </head>
-  <body ng-app="app">
-    <div ng-controller="mainController">
+  <body ng-app="app" ng-controller="mainController">
+    <section class="sidebar">
+      <ul class="button-list">
+        <li>
+          <input type="radio" id="nav-main" ng-model="navSelection" value="main" name="nav">
+          <label for="nav-main"><div>Main Page<div></label>
+        </li>
+        <li>
+          <input type="radio" id="nav-pos" ng-model="navSelection" value="pos" name="nav">
+          <label for="nav-pos"><div>Parts of Speech<div></label>
+        </li>
+        <li>
+          <input type="radio" id="nav-def" ng-model="navSelection" value="def" name="nav">
+          <label for="nav-def"><div>Definitions<div></label>
+        </li>
+        <li>
+          <input type="radio" id="nav-rad" ng-model="navSelection" value="rad" name="nav">
+          <label for="nav-rad"><div>Radical<div></label>
+        </li>
+        <li>
+          <input type="radio" id="nav-str" ng-model="navSelection" value="str" name="nav">
+          <label for="nav-str"><div>Stroke Count<div></label>
+        </li>
+    </section>
+    <section class="content">
       <p>Entries: {{ entriesNoPOS.length }}</p>
-      <p>Current entry: {{ entriesNoPOS[noPOSIndex] }}
-      <form ng-submit="addEntryPOS()">
+      <section>
+        <section class="term chinese-chars"> 
+          {{ currentPOSEntry.traditional }}<br>
+          {{ currentPOSEntry.simplified }}
+        </section>
+        <section>
+          {{ currentPOSEntry.pinyin }}
+        </section>
+        <section ng-repeat="def in currentPOSEntry.definitions">
+          <strong>{{ $index + 1 }}</strong> {{ def }}
+        </section>
+      </section>
+      <form name="posForm" ng-submit="addEntryPOS()">
         <input type="button" ng-click="loadEntriesNoPOS()" value="Start">
         <input type="text" class="typeahead form-control" sf-typeahead options="partsOptions" datasets="partsDataset" ng-model="partSelection">
         <input type="submit" value="Update">
         <input type="button" ng-click="nextEntryPOS()" value="Skip">
       </form>
-    </div>
+      <section>
+        Last entry:<br> {{ updatePOSResult }}
+      </section>
+    </section>
 
     <!-- Load Scripts -->
     <!--Bootstrap-->
@@ -30,5 +67,7 @@
     <script type="text/javascript" src="../bower_components/angular-typeahead/dist/angular-typeahead.min.js"></script>
     <!-- App Scripts -->
     <script type="text/javascript" src="app.config.js"></script>
+    <!-- Styling -->
+    <link rel="stylesheet" type="text/css" href="style.css">
   </body>
 </html>
