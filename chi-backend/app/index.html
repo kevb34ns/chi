@@ -5,7 +5,7 @@
     <title>Chi Manager</title>
   </head>
   <body ng-app="app" ng-controller="mainController">
-    <section class="sidebar">
+    <nav>
       <ul class="button-list">
         <li>
           <input type="radio" id="nav-main" ng-model="navSelection" value="main" name="nav">
@@ -27,30 +27,10 @@
           <input type="radio" id="nav-str" ng-model="navSelection" value="str" name="nav">
           <label for="nav-str"><div>Stroke Count<div></label>
         </li>
-    </section>
+    </nav>
     <section class="content">
-      <p>Entries: {{ entriesNoPOS.length }}</p>
-      <section>
-        <section class="term chinese-chars"> 
-          {{ currentPOSEntry.traditional }}<br>
-          {{ currentPOSEntry.simplified }}
-        </section>
-        <section>
-          {{ currentPOSEntry.pinyin }}
-        </section>
-        <section ng-repeat="def in currentPOSEntry.definitions">
-          <strong>{{ $index + 1 }}</strong> {{ def }}
-        </section>
-      </section>
-      <form name="posForm" ng-submit="addEntryPOS()">
-        <input type="button" ng-click="loadEntriesNoPOS()" value="Start">
-        <input type="text" class="typeahead form-control" sf-typeahead options="partsOptions" datasets="partsDataset" ng-model="partSelection">
-        <input type="submit" value="Update">
-        <input type="button" ng-click="nextEntryPOS()" value="Skip">
-      </form>
-      <section>
-        Last entry:<br> {{ updatePOSResult }}
-      </section>
+      <main-page ng-if="navSelection == 'main'"></main-page>
+      <pos-page ng-if="navSelection == 'pos'"></pos-page>
     </section>
 
     <!-- Load Scripts -->
@@ -66,8 +46,12 @@
     <!-- Angular-Typeahead -->
     <script type="text/javascript" src="../bower_components/angular-typeahead/dist/angular-typeahead.min.js"></script>
     <!-- App Scripts -->
-    <script type="text/javascript" src="app.config.js"></script>
+    <script type="text/javascript" src="./app.config.js"></script>
+    <script src="./main-page/main-page.component.js"></script>
+    <script src="./pos-page/pos-page.component.js"></script>
+    <script src="./core/services/mongo.service.js"></script>
     <!-- Styling -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
   </body>
 </html>
