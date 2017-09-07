@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Chi Manager</title>
+  </head>
+  <body ng-app="app">
+    <div ng-controller="mainController">
+      <p>Entries: {{ entriesNoPOS.length }}</p>
+      <p>Current entry: {{ entriesNoPOS[noPOSIndex] }}
+      <form ng-submit="addEntryPOS()">
+        <input type="button" ng-click="loadEntriesNoPOS()" value="Start">
+        <input type="text" class="typeahead form-control" sf-typeahead options="partsOptions" datasets="partsDataset" ng-model="partSelection">
+        <input type="submit" value="Update">
+        <input type="button" ng-click="nextEntryPOS()" value="Skip">
+      </form>
+    </div>
+
+    <!-- Load Scripts -->
+    <!--Bootstrap-->
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- jQuery -->
+    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <!--Angular-->
+    <script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
+    <!-- Typeahead -->
+    <script type="text/javascript" src="../bower_components/typeahead.js/dist/typeahead.bundle.js"></script>
+    <!-- Angular-Typeahead -->
+    <script type="text/javascript" src="../bower_components/angular-typeahead/dist/angular-typeahead.min.js"></script>
+    <!-- App Scripts -->
+    <script type="text/javascript" src="app.config.js"></script>
+  </body>
+</html>

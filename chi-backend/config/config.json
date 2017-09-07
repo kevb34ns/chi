@@ -1,0 +1,17 @@
+{
+  "partsOfSpeech": [
+    "noun",
+    "pronoun",
+    "verb",
+    "modal verb",
+    "adjective",
+    "adverb",
+    "number",
+    "measure word",
+    "interjection",
+    "onomatopoeia",
+    "conjunction",
+    "preposition",
+    "particle"
+  ]
+}

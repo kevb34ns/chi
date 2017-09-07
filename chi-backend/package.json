@@ -1,0 +1,8 @@
+{
+  "name": "chi-backend",
+  "version": "0.0.0",
+  "main": "main.js",
+  "dependencies": {
+    "mongoose": "^4.11.10"
+  }
+}
