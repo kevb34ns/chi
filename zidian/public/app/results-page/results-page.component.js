@@ -1,9 +1,13 @@
 var searchController = [
-  '$routeParams', '$location', `CacheService`, 'APIService',
-  function($routeParams, $location, CacheService, APIService) {
+  '$routeParams', '$location', '$scope', `CacheService`, 'APIService',
+  function($routeParams, $location, $scope, CacheService, APIService) {
     
     var ctrl = this;
+
     ctrl.isSimplified = CacheService.isSimplified();
+    $scope.$watch (
+      () => { return CacheService.isSimplified(); }, 
+      (newVal) => { ctrl.isSimplified = newVal; });
 
     ctrl.query = $routeParams.query;
 

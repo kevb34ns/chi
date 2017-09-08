@@ -1,12 +1,24 @@
 <nav-bar></nav-bar>
-<div class="chinese-chars def-term col-md-4">
-  <term-display entry='$ctrl.entries[0]' is-simplified='$ctrl.isSimplified'></term-display>
-</div>
-<div class="col-md-8">
+<section class="card-view">
+  <ruby ng-repeat="pinyin in $ctrl.entries[0].pinyin.split(' ') track by $index">
+    <rb class="chinese-chars def-term">
+      <span ng-if='$ctrl.isSimplified'>
+        {{ $ctrl.entries[0].simplified.charAt($index) }}
+      </span>
+      <span ng-if='!$ctrl.isSimplified'>
+        {{ $ctrl.entries[0].traditional.charAt($index) }} 
+      </span>
+    </rb>
+    <rt>{{ pinyin }}</rt>
+  </ruby>
+</section>
+<section class="card-view">
   <div ng-repeat="entry in $ctrl.entries">
     <h3>{{ entry.pinyin }}</h3>
     <div ng-repeat="def in entry.definitions">
       <strong>{{ $index + 1 }}</strong>  {{ def }}<br>
     </div>
   </div>
-</div>
+</section>
+
+<link rel="stylesheet" href="/app/definition-page/definition-page.style.css">

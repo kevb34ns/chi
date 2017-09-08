@@ -3,6 +3,10 @@ var modeToggleController = [
   function(CacheService) {
     var ctrl = this;
     ctrl.isSimplified = CacheService.isSimplified();
+    ctrl.setSimplified = (isSimplified) => {
+      ctrl.isSimplified = isSimplified;
+      CacheService.setSimplified(isSimplified);
+    }
   }
 ];
 

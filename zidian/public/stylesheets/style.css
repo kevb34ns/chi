@@ -13,10 +13,16 @@ a, a:hover, a:visited, a:link, a:active
     text-decoration: none;
 }
 
-.card-view { /** TODO example, may not be needed */
-  background: #fff;
+.card-view { 
+  background: #fcfcfc;
   border-radius: 2px;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, .10);
+}
+
+.section-header {
+  border-bottom: 1px solid #eee;
+  padding: 1rem 1rem 1rem 1rem;
+  font-size: 2rem;
 }
 
 .def-term {

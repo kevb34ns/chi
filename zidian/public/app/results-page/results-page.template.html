@@ -1,18 +1,24 @@
 <nav-bar></nav-bar>
-<div class="page-header chinese-chars">
-	<h1><small>Results for <strong>{{ $ctrl.query }}</strong></small>
-</div>
-<div ng-repeat="entry in $ctrl.entries">
-	<span ng-click="$ctrl.goToDefinition(entry.simplified)" class="chinese-chars">
-		Traditional: {{entry.traditional}}<br>
-		Simplified: {{entry.simplified}}<br>
-	</span>
-	Pinyin: {{entry.pinyin}}<br>
-	Definitions:<br>
-	<div>
-		<span ng-repeat="def in entry.definitions">
-			<strong>{{$index + 1}}.</strong> {{def}} 
-		</span>
-	</div>
-	<br>
-</div>
+<section class="card-view">
+	<section class="section-header chinese-chars">
+		Results for <strong>{{ $ctrl.query }}</strong>
+	</section>
+	<section class="result" ng-repeat="entry in $ctrl.entries" ng-click="$ctrl.goToDefinition(entry.simplified)">
+		<ruby ng-repeat="pinyin in entry.pinyin.split(' ') track by $index">
+			<rb class="chinese-chars">
+				<span ng-if="$ctrl.isSimplified">{{ entry.simplified.charAt($index) }}<br></span>
+				<span ng-if="!$ctrl.isSimplified">{{ entry.traditional.charAt($index) }}<br></span>
+			</rb>
+			<rt>{{ pinyin }}</rt>
+		</ruby>
+		<br>
+		<span ng-if="entry.partOfSpeech">{{ entry.partOfSpeech }}<br></span>
+		<div>
+			<span ng-repeat="def in entry.definitions">
+				<strong>{{$index + 1}}</strong> {{def}} 
+			</span>
+		</div>
+	</section>
+</section>
+
+<link rel="stylesheet" href="/app/results-page/results-page.style.css">

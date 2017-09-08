@@ -1,6 +1,6 @@
 <!-- TODO doesn't actually change between traditional and simplified or even save the setting ATM, just sets it in this controller -->
 
-<div ng-switch on="$ctrl.isSimplified" ng-click="$ctrl.isSimplified = !$ctrl.isSimplified">
+<div ng-switch on="$ctrl.isSimplified" ng-click="$ctrl.setSimplified(!$ctrl.isSimplified)">
   <div ng-switch-when="true" class="mode-fade">简<span class="hidden-xs hidden-sm">&nbsp;Simplified&nbsp;</span></div>
   <div ng-switch-when="false" class="mode-fade">繁<span class="hidden-xs hidden-sm">&nbsp;Traditional</span></div>
 </div>

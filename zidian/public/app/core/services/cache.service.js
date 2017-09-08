@@ -1,5 +1,7 @@
 angular.module('app')
 .factory('CacheService', function(){
+
+  let SIMPLIFIED_KEY = 'isSimplified'
   
   var CACHE_SIZE = 100;
 
@@ -65,13 +67,19 @@ angular.module('app')
     isSimplified: function() {
       var simplifiedCheck = true;
       if (typeof(Storage) !== 'undefined') {
-        var val = localStorage.getItem("isSimplified");
+        var val = localStorage.getItem(SIMPLIFIED_KEY);
         if (val === 'false') {
           simplifiedCheck = false;
         }
       }
 
       return simplifiedCheck;
+    },
+
+    setSimplified: (isSimplified) => {
+      if (typeof(Storage) !== 'undefined') {
+        localStorage.setItem(SIMPLIFIED_KEY, isSimplified)
+      }
     },
 
     saveEntries: function(newEntries) {
