@@ -1,0 +1,125 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  background-color: #061B20;
+  color: #fcfcfc;
+  font-family: 'Segoe UI', 'Ubuntu', 'Helvetica Neue', 'Roboto', sans-serif;
+}
+
+h2 {
+  line-height: .75;
+  margin-top: 0;
+}
+
+.content {
+  padding: 4rem;
+  width: 100%;
+  box-shadow: 0 0 6px 2px rgba(6, 26, 32, 0.70)
+}
+
+main-page {
+  text-align: center;
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+input[type="text"] {
+  background-color: rgba(0, 0, 0, 0) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  border-bottom: 2px solid gray !important;
+  color: orange !important;
+  box-shadow: none !important;
+  height: 3.0rem !important;
+}
+
+input[type="text"]:focus {
+  box-shadow: none !important;
+  border: none !important;
+  border-bottom: 2px solid orange !important;
+}
+
+input[type="button"], 
+input[type="submit"] {
+  background-color: #0097cf;
+  color: #fcfcfc;
+  border: 2px solid #0097cf;
+  padding: 0 1.25rem 0 1.25rem;
+  box-sizing: border-box;
+  height: 3.0rem;
+}
+
+input[type="button"]:hover, 
+input[type="submit"]:hover {
+  cursor: default;
+  border: 2px solid #56B2D9;
+}
+
+input[type="button"]:active, 
+input[type="submit"]:active {
+  background-color: #56B2D9;
+}
+
+input[type="button"]:focus, 
+input[type="submit"]:focus {
+  outline: none;
+}
+
+.chinese-chars {
+	font-family: Helvetica, Arial, "Microsoft YaHei", "微软雅黑体", "STHeiti", "华文楷体", sans-serif;
+}
+
+.term {
+  font-size: 3rem;
+}
+
+nav {
+  height: 100%;
+  width: 15rem;
+  flex: initial;
+  background-color: #ebf2f5;
+  color: #444;
+}
+
+.button-list {
+  list-style-type: none;
+  width: 15rem;
+  padding: 0;
+}
+
+.button-list li {
+  width: 100%;
+  height: 5rem;
+  margin: 0;
+  border-bottom: 1px solid #D5D9DB;
+}
+
+.button-list input[type="radio"] {
+  opacity: 0.0;
+  z-index: 100;
+  display: none;
+}
+
+.button-list input[type="radio"]:checked + label {
+  color: #fcfcfc;
+  background-color: #061B20;
+}
+
+.button-list label {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  display: table;
+}
+
+.button-list label div {
+  text-align: right;
+  padding-right: 1rem;
+  display: table-cell;
+  vertical-align: middle;
+  user-select: none;
+}

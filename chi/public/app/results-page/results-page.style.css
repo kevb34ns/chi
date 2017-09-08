@@ -1,0 +1,23 @@
+results-page .result {
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+  user-select: none;
+  transition: all linear 0.1s;
+}
+
+results-page .result:hover {
+  background-color: #eee;
+}
+
+results-page ruby rb {
+  font-size: 2.5rem;
+}
+
+results-page ruby rt {
+  font-size: 75%;
+}
+
+results-page .card-view {
+  margin-bottom: 6rem;
+  padding-bottom: 3rem;
+}

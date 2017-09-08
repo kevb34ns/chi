@@ -1,0 +1,28 @@
+<h2>Parts Of Speech</h2>
+<p>Unfilled Entries: {{ $ctrl.entriesNoPOS.length }}</p>
+<section>
+<section>
+  <section class="term chinese-chars"> 
+    {{ $ctrl.currentPOSEntry.traditional }}
+  </section>
+  <section class="pinyin">
+    {{ $ctrl.currentPOSEntry.pinyin }}
+  </section>
+  <section class="definitions">
+    <strong>Definitions:</strong><br>
+    <span ng-repeat="def in $ctrl.currentPOSEntry.definitions">
+      <strong>{{ $index + 1 }}</strong> {{ def }}<br>
+    </span>
+  </section>
+</section>
+<form name="$ctrl.posForm" ng-submit="$ctrl.addEntryPOS()">
+  <input type="text" class="typeahead form-control" sf-typeahead options="partsOptions" datasets="$ctrl.partsDataset" ng-model="$ctrl.partSelection" placeholder="Add Parts Of Speech...">
+  <input type="submit" value="Update">
+  <input type="button" ng-click="$ctrl.nextEntryPOS()" value="Skip">
+</form>
+<section>
+  Last entry:<br> {{ $ctrl.updatePOSResult }}
+</section>
+</section>
+
+<link rel="stylesheet" href="./pos-page/pos-page.style.css">
