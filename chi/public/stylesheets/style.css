@@ -4,6 +4,11 @@ body {
   color: #3b3e41;
 }
 
+body > main-page {
+  background-color: #1e6483; 
+  color: #f4f4f4;
+}
+
 a {
   color: #00B7FF;
 }

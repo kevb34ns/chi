@@ -1,8 +1,9 @@
 <div id="nav-bar">
   <div id="logo-box" class="chinese-chars" onclick="location.href='./#/index'">
-      <div>字典</div>
+      <img src="/images/icons/chi.png" />
+      <div class="hidden-sm hidden-xs">Chi</div>
   </div>
-  <search-field></search-field>
+  <search-field ng-if="!$ctrl.hideSearchField"></search-field>
   <mode-toggle></mode-toggle>
 </div>
 
