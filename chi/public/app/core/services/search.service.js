@@ -39,6 +39,18 @@ angular.module('app')
               return response.data;
             }
           )
+      },
+
+      /**
+       * Returns a radical object for the specified kangXi number
+       * @param {String} kangXi The KangXi radical number, as a string.
+       * @return {traditional: String, simplified: String, variants: [String]}
+       */
+      getRadical: function(kangXi) {
+        return $http.get("http://localhost:3000/api/radical/" + kangXi)
+          .then(function(response) {
+            return response.data;
+          })
       }
     }
   }

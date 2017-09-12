@@ -6,3 +6,44 @@ definition-page .card-view {
 definition-page ruby rt {
   font-size: 100%;
 }
+
+/** Single-character term display */
+definition-page section[ng-if="$ctrl.isSingleCharacter"] {
+  display: flex;
+}
+
+definition-page section[ng-if="$ctrl.isSingleCharacter"]
+.term-info {
+  padding: 0 2rem 0 2rem;
+  flex: auto;
+}
+
+/** Multi-character term display */
+definition-page section[ng-if="!$ctrl.isSingleCharacter"] {
+  text-align: center;
+}
+
+definition-page section[ng-if="!$ctrl.isSingleCharacter"]
+.term-info {
+  display: inline-flex;
+  word-wrap: normal;
+}
+
+definition-page .tts {
+  margin-left: 0.5rem;
+  height: 3rem;
+  width: 3rem;
+  align-self: center;
+  background-color: #c83232;
+  border-radius: 50%;
+  background-image: url('/images/icons/tts.png');
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  box-shadow: 0 1px 2px 2px rgba(0, 0, 0, .25);
+}
+
+definition-page .tts:hover {
+  background-color: #922424;
+}

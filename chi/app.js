@@ -11,9 +11,10 @@ var users = require('./routes/users');
 var app = express();
 
 // dictionary database API setup
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 mongoose.connect("mongodb://localhost/test");
-var entrySchema = {
+
+let entrySchema = {
   traditional: String,
   simplified: String,
   pinyin: String,
@@ -24,7 +25,17 @@ var entrySchema = {
   tStrokes: String,
   sStrokes: String
 };
-var entries = mongoose.model('entries', entrySchema, 'dictionary');
+
+let entries = mongoose.model('entries', entrySchema, 'dictionary');
+
+let radicalSchema = {
+  kangXi: String,
+  traditional: String,
+  simplified: String,
+  variants: [String]
+}
+
+let radicals = mongoose.model('radicals', radicalSchema, 'radicals');
 
 app.get('/api/search/:query', function(req, res) {
   entries.find({$text: {
@@ -43,16 +54,27 @@ app.get('/api/search/:query', function(req, res) {
 
 // entry object api
 app.get('/api/term/:term', function(req, res) {
-  console.log("Term:" + req.params.term);
   entries.find({$or: [
     {traditional: req.params.term}, 
     {simplified: req.params.term}]},
-    function(err, doc) {
+   function(err, doc) {
       if (!err) {
         console.log (doc);
         res.send(doc);
       } 
     });
+});
+
+// radical collection api
+app.get('/api/radical/:kangXi', function(req, res) {
+  radicals.findOne({ kangXi: req.params.kangXi },
+      function(err, doc) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send(doc);
+        }
+      });
 });
 
 // view engine setup

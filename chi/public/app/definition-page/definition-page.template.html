@@ -1,16 +1,49 @@
 <nav-bar></nav-bar>
 <section class="card-view">
-  <ruby ng-repeat="pinyin in $ctrl.entries[0].pinyin.split(' ') track by $index">
-    <rb class="chinese-chars def-term">
+  <section ng-if="$ctrl.isSingleCharacter">
+    <ruby ng-repeat="pinyin in $ctrl.entries[0].pinyin.split(' ') track by $index">
+      <rb class="chinese-chars def-term">
+        <span ng-if='$ctrl.isSimplified'>
+          {{ $ctrl.entries[0].simplified.charAt($index) }}
+        </span>
+        <span ng-if='!$ctrl.isSimplified'>
+          {{ $ctrl.entries[0].traditional.charAt($index) }} 
+        </span>
+      </rb>
+      <rt>{{ pinyin }}</rt>
+    </ruby>
+    <section class="tts" ng-click="$ctrl.speak()"></section>
+    <section class='term-info'>
       <span ng-if='$ctrl.isSimplified'>
-        {{ $ctrl.entries[0].simplified.charAt($index) }}
+        <span ng-if='$ctrl.sRadical'>
+          Radical: {{ $ctrl.sRadical }}<br>
+        </span>
+        Strokes: {{ $ctrl.entries[0].sStrokes }}
       </span>
       <span ng-if='!$ctrl.isSimplified'>
-        {{ $ctrl.entries[0].traditional.charAt($index) }} 
+          <span ng-if='$ctrl.tRadical'>
+            Radical: {{ $ctrl.tRadical }}<br>
+          </span>
+        Strokes: {{ $ctrl.entries[0].tStrokes }}
       </span>
-    </rb>
-    <rt>{{ pinyin }}</rt>
-  </ruby>
+    </section>
+  </section>
+  <section ng-if="!$ctrl.isSingleCharacter">
+    <section class="term-info">
+      <ruby ng-repeat="pinyin in $ctrl.entries[0].pinyin.split(' ') track by $index">
+        <rb class="chinese-chars def-term">
+          <span ng-if='$ctrl.isSimplified'>
+            {{ $ctrl.entries[0].simplified.charAt($index) }}
+          </span>
+          <span ng-if='!$ctrl.isSimplified'>
+            {{ $ctrl.entries[0].traditional.charAt($index) }} 
+          </span>
+        </rb>
+        <rt>{{ pinyin }}</rt>
+      </ruby>
+      <section class="tts" ng-click="$ctrl.speak()"></section>
+    </section>
+  </section>
 </section>
 <section class="card-view">
   <div ng-repeat="entry in $ctrl.entries">
@@ -18,8 +51,6 @@
     <div ng-repeat="def in entry.definitions">
       <strong>{{ $index + 1 }}</strong>  {{ def }}<br>
     </div>
-    {{ entry.sRadical }}<br>
-    {{ entry.sStrokes }}
   </div>
 </section>
 
