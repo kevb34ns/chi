@@ -3,7 +3,7 @@ let posPageController = [
   '$q',
   function(MongoService, $q) {
     let ctrl = this
-    let entries = MongoService.db()
+    let entries = MongoService.entryDb()
     let fs = require('fs')
     let configFilename = __dirname + "/../config/config.json"
 

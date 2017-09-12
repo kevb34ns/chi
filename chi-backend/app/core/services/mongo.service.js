@@ -11,14 +11,32 @@ angular.module('app')
       simplified: String,
       pinyin: String,
       definitions: [String],
-      partOfSpeech: String
-    }
+      partOfSpeech: String,
+      tRadical: String,
+      sRadical: String,
+      tStrokes: String,
+      sStrokes: String
+    };
     
-    let model = mongoose.model('entries', entrySchema, 'dictionary') 
+    let entry = mongoose.model('entries', entrySchema, 'dictionary');
+
+    let radicalSchema = {
+      kangXi: { type: String, index: true },
+      traditional: { type: String },
+      simplified: { type: String },
+      variant1: { type: String },
+      variant2: { type: String }
+    };
+
+    let radical = mongoose.model('radicals', radicalSchema, 'radicals');
 
     return {
-      db: function() {
-        return model
+      entryDb: function() {
+        return entry;
+      },
+
+      radicalDb: function() {
+        return radical;
       }
     }
   }

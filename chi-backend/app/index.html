@@ -20,17 +20,14 @@
           <label for="nav-def"><div>Definitions<div></label>
         </li>
         <li>
-          <input type="radio" id="nav-rad" ng-model="navSelection" value="rad" name="nav">
-          <label for="nav-rad"><div>Radical<div></label>
-        </li>
-        <li>
-          <input type="radio" id="nav-str" ng-model="navSelection" value="str" name="nav">
-          <label for="nav-str"><div>Stroke Count<div></label>
+          <input type="radio" id="nav-rad-str" ng-model="navSelection" value="rad-str" name="nav">
+          <label for="nav-rad-str"><div>Strokes and<br>Radicals<div></label>
         </li>
     </nav>
     <section class="content">
-      <main-page ng-if="navSelection == 'main'"></main-page>
-      <pos-page ng-if="navSelection == 'pos'"></pos-page>
+      <main-page ng-if="navSelection === 'main'"></main-page>
+      <pos-page ng-if="navSelection === 'pos'"></pos-page>
+      <rad-str-page ng-if="navSelection === 'rad-str'"></rad-str-page>
     </section>
 
     <!-- Load Scripts -->
@@ -49,7 +46,9 @@
     <script type="text/javascript" src="./app.config.js"></script>
     <script src="./main-page/main-page.component.js"></script>
     <script src="./pos-page/pos-page.component.js"></script>
+    <script src="./rad-str-page/rad-str-page.component.js"></script>
     <script src="./core/services/mongo.service.js"></script>
+    <script src="./core/services/externalAPI.service.js"></script>
     <!-- Styling -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">

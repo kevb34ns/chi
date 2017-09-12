@@ -17,7 +17,12 @@ var entrySchema = {
   traditional: String,
   simplified: String,
   pinyin: String,
-  definitions: [String]
+  definitions: [String],
+  partOfSpeech: String,
+  tRadical: String,
+  sRadical: String,
+  tStrokes: String,
+  sStrokes: String
 };
 var entries = mongoose.model('entries', entrySchema, 'dictionary');
 

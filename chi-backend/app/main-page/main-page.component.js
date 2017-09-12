@@ -1,4 +1,4 @@
-var mainComponent = [function() {
+var mainPageController = [function() {
   var ctrl = this;
 
 }]
@@ -6,5 +6,5 @@ var mainComponent = [function() {
 angular.module('app')
 .component('mainPage', {
   templateUrl:'./main-page/main-page.template.html',
-  controller: mainComponent
+  controller: mainPageController
 })

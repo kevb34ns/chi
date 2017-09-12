@@ -6,7 +6,6 @@ let win;
 
 function createWindow() {
   win = new BrowserWindow({width: 1024, height: 768});
-  win.setMenu(null);
 
   win.loadURL(url.format({
     pathname: path.join(__dirname, 'app/index.html'),
