@@ -2,10 +2,10 @@ angular.module('app')
 .factory('externalAPIService', [
   'MongoService',
   '$http',
-  function(MongoService, $http) {
+  '$q',
+  function(MongoService, $http, $q) {
     let database = MongoService.entryDb();
     let characterUrl = 'http://ccdb.hemiola.com/characters?fields=string,kRSKangXi,kTotalStrokes';
-    let radicalUrl = 'http://ccdb.hemiola.com/characters/radicals/${radNum}?fields=string,kRSKangXi&filter=${mode}';
 
     var numEntriesUpdated = 0;
 
@@ -46,11 +46,79 @@ angular.module('app')
       numEntriesUpdated++;
     }
 
+    function getRadicalUrl(mode) {
+      let radicalUrl = `http://ccdb.hemiola.com/characters/radicals?strokes=0&fields=string&filter=${mode}`;
+      return radicalUrl;
+    }
+
+    function getRadicals() {
+      let mode1 = "!simplified";
+      let mode2 = "simplified";
+
+      return new $q(function(resolve, reject) {
+        $http.get(getRadicalUrl(mode1))
+            .then(function(response1) {
+              $http.get(getRadicalUrl(mode2))
+                  .then(function(response2) {
+                    resolve({
+                      mode1Radicals: response1.data,
+                      mode2Radicals: response2.data
+                    })
+                  })
+            })
+      })
+    }
+
     function createOrUpdateRadicalDatabase() {
-      var radNum = 1;
-      // !simplified+!simplifiable: characters with only one variant
-      // simplified: the simplified variant of a character
-      var mode = '!simplified+!simplifiable';
+      let numKangXiRadicals = 214;
+      let radicalDb = MongoService.radicalDb();
+
+      getRadicals().then((res) => {
+
+        let radicalArray = [];
+        for (var i = 0; i < numKangXiRadicals; i++) {
+          radicalArray.push({ });
+        }
+
+        res.mode1Radicals.forEach((obj) => {
+          let kangXi = parseInt(obj.radical);
+          radicalArray[kangXi - 1].kangXi = kangXi;
+
+          if (!radicalArray[kangXi - 1].traditional) {
+            radicalArray[kangXi - 1].traditional = obj.string;
+          } else {
+            if (!radicalArray[kangXi - 1].variants) {
+              radicalArray[kangXi - 1].variants = [];
+            }
+
+            radicalArray[kangXi - 1].variants.push(obj.string);
+          }
+        });
+
+        res.mode2Radicals.forEach((obj) => {
+          let kangXi = parseInt(obj.radical);
+          radicalArray[kangXi - 1].kangXi = kangXi;
+
+          if (!radicalArray[kangXi - 1].simplified) {
+            radicalArray[kangXi - 1].simplified = obj.string;
+          } else {
+            if (!radicalArray[kangXi - 1].variants) {
+              radicalArray[kangXi - 1].variants = [];
+            }
+
+            radicalArray[kangXi - 1].variants.push(obj.string);
+          }
+        });
+
+        console.log(radicalArray);
+        radicalArray.forEach((obj) => {
+          radicalDb.update({ kangXi : obj.kangXi }, obj, { upsert: true }, (err, raw) => {
+            if (err) {
+              console.log(err);
+            }
+          })
+        })
+      })
     }
 
     return {

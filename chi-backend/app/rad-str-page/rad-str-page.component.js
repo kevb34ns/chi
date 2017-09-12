@@ -6,12 +6,16 @@ let radStrController = [
 
     ctrl.numEntriesUpdated = 0;
 
-    ctrl.update = function() {
+    ctrl.updateRadicalsAndStrokes = function() {
       externalAPIService.updateRadicalsAndStrokes();
     }
 
     $scope.$watch(() => externalAPIService.getNumEntriesUpdated(),
         (newVal) => ctrl.numEntriesUpdated = newVal);
+
+    ctrl.updateRadicalDb = function() {
+      externalAPIService.updateRadicalDatabase();
+    }
   }
 ];
 

@@ -24,8 +24,7 @@ angular.module('app')
       kangXi: { type: String, index: true },
       traditional: { type: String },
       simplified: { type: String },
-      variant1: { type: String },
-      variant2: { type: String }
+      variants: { type: [String] }
     };
 
     let radical = mongoose.model('radicals', radicalSchema, 'radicals');

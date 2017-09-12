@@ -23,6 +23,10 @@
           <input type="radio" id="nav-rad-str" ng-model="navSelection" value="rad-str" name="nav">
           <label for="nav-rad-str"><div>Strokes and<br>Radicals<div></label>
         </li>
+        <li>
+            <input type="radio" id="nav-mea" ng-model="navSelection" value="mea" name="nav">
+            <label for="nav-mea"><div>Measure Words<div></label>
+          </li>
     </nav>
     <section class="content">
       <main-page ng-if="navSelection === 'main'"></main-page>
