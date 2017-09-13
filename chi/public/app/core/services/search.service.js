@@ -17,8 +17,7 @@ angular.module('app')
        * @return an array of objects, each of which represents a entry.
        */
       search: function(query) {
-        // TODO you must find a way to point this url to a constant address, otherwise it won't work on any machine except localhost
-        return $http.get("http://localhost:3000/api/search/" + query)
+        return $http.get("https://chidictionary.herokuapp.com/api/search/" + query)
           .then(
             function(response) {
               return response.data;
@@ -32,8 +31,8 @@ angular.module('app')
        * @return an array of objects, each of which represents an entry.
        */
       getTerm: function(term) {
-        console.log("http://localhost:3000/api/term/" + term);
-        return $http.get("http://localhost:3000/api/term/" + term)
+        console.log("https://chidictionary.herokuapp.com/api/term/" + term);
+        return $http.get("https://chidictionary.herokuapp.com/api/term/" + term)
           .then(
             function(response) {
               return response.data;
@@ -47,7 +46,7 @@ angular.module('app')
        * @return {traditional: String, simplified: String, variants: [String]}
        */
       getRadical: function(kangXi) {
-        return $http.get("http://localhost:3000/api/radical/" + kangXi)
+        return $http.get("https://chidictionary.herokuapp.com/api/radical/" + kangXi)
           .then(function(response) {
             return response.data;
           })
