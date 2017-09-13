@@ -1,0 +1,8 @@
+{
+	"scripts": {
+		"postinstall": "cd chi && npm install"
+	},
+	"cacheDirectories": [
+		"chi/node_modules"
+	]
+}
