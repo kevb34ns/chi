@@ -1,5 +1,5 @@
 <nav-bar></nav-bar>
-<section class="card-view">
+<section class="card-view term-container">
   <section ng-if="$ctrl.isSingleCharacter">
     <ruby ng-repeat="pinyin in $ctrl.entries[0].pinyin.split(' ') track by $index">
       <rb class="chinese-chars def-term">
@@ -15,13 +15,13 @@
     <section class="tts" ng-click="$ctrl.speak()"></section>
     <section class='term-info'>
       <span ng-if='$ctrl.isSimplified'>
-        <span ng-if='$ctrl.sRadical'>
+        <span ng-if='$ctrl.sRadical' class="clickable" ng-click="$ctrl.goToRadical($ctrl.sRadical)">
           Radical: {{ $ctrl.sRadical }}<br>
         </span>
         Strokes: {{ $ctrl.entries[0].sStrokes }}
       </span>
       <span ng-if='!$ctrl.isSimplified'>
-          <span ng-if='$ctrl.tRadical'>
+          <span ng-if='$ctrl.tRadical' class="clickable" ng-click="$ctrl.goToRadical($ctrl.tRadical)">
             Radical: {{ $ctrl.tRadical }}<br>
           </span>
         Strokes: {{ $ctrl.entries[0].tStrokes }}
@@ -31,7 +31,7 @@
   <section ng-if="!$ctrl.isSingleCharacter">
     <section class="term-info">
       <ruby ng-repeat="pinyin in $ctrl.entries[0].pinyin.split(' ') track by $index">
-        <rb class="chinese-chars def-term">
+        <rb class="chinese-chars def-term clickable"  ng-click="$ctrl.goToDefinition($index)">
           <span ng-if='$ctrl.isSimplified'>
             {{ $ctrl.entries[0].simplified.charAt($index) }}
           </span>
@@ -45,9 +45,10 @@
     </section>
   </section>
 </section>
-<section class="card-view">
-  <div ng-repeat="entry in $ctrl.entries">
-    <h3>{{ entry.pinyin }}</h3>
+<section class="card-view def-container">
+  <section class="section-header">Definitions</section>
+  <div ng-repeat="entry in $ctrl.entries" class="definition">
+    <h4>{{ entry.pinyin }}</h4>
     <div ng-repeat="def in entry.definitions">
       <strong>{{ $index + 1 }}</strong>  {{ def }}<br>
     </div>

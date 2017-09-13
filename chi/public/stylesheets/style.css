@@ -1,5 +1,5 @@
 body {
-  font: 16px Helvetica, Arial, sans-serif;
+  font: 16px 'Muli', Helvetica, Arial, sans-serif;
   background: #f4f4f4;
   color: #3b3e41;
 }
@@ -30,18 +30,10 @@ a, a:hover, a:visited, a:link, a:active
   font-size: 2rem;
 }
 
-.def-term {
-  font-size: 48px;
-}
-
 .secondary-script {
   color: #aaa;
 }
 
 .chinese-chars {
-	font-family: Helvetica, Arial, "Microsoft YaHei", "微软雅黑体", "STHeiti", "华文楷体", sans-serif;
-}
-
-#main-page {
-  margin-top: 12rem;
+	font-family: 'Muli', Helvetica, Arial, "Microsoft YaHei", "微软雅黑体", "STHeiti", "华文楷体", sans-serif;
 }

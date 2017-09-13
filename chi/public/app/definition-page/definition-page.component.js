@@ -1,6 +1,6 @@
 var definitionController = [
-  '$routeParams', '$scope', 'CacheService', 'APIService',
-  function($routeParams, $scope, CacheService, APIService) {
+  '$routeParams', '$location', '$scope', 'CacheService', 'APIService',
+  function($routeParams, $location, $scope, CacheService, APIService) {
 
     var ctrl = this;
 
@@ -41,6 +41,7 @@ var definitionController = [
           }
         }
       }
+
       ctrl.speak = function() {
         let tts = window.speechSynthesis;
         if (tts) {
@@ -48,6 +49,20 @@ var definitionController = [
           utter.lang = 'zh-CN';
           utter.rate = .5;
           tts.speak(utter);
+        }
+      }
+
+      ctrl.goToDefinition = function(index) {
+        if (ctrl.entries[0] && Number.isInteger(index) &&
+            index >= 0 && index < ctrl.entries[0].traditional.length) {
+
+          $location.path('/definition/' + ctrl.entries[0].traditional.charAt(index));
+        }
+      }
+
+      ctrl.goToRadical = function(term) {
+        if (term && term.length > 0) {
+          $location.path('/definition/' + term);
         }
       }
   }

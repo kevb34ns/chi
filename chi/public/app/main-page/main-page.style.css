@@ -2,3 +2,29 @@ body {
   background-color: #1e6483; 
   color: #f4f4f4;
 }
+
+#main-page {
+  margin-top: 8rem;
+}
+
+main-page .title {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+main-page .title h1 {
+  font-size: 7.2rem;
+  line-height: .8;
+}
+
+@media only screen and (max-width: 768px) {
+  #main-page {
+    margin-top: 0;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  main-page mode-toggle .mode {
+    display: inline !important;
+  }
+}

@@ -1,6 +1,20 @@
-definition-page .card-view {
+.def-term {
+  font-size: 4rem;
+}
+
+definition-page .term-container {
   padding: 2rem;
   margin-bottom: 2rem;
+}
+
+definition-page .def-container {
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+}
+
+definition-page .definition {
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
 }
 
 definition-page ruby rt {
@@ -10,6 +24,11 @@ definition-page ruby rt {
 /** Single-character term display */
 definition-page section[ng-if="$ctrl.isSingleCharacter"] {
   display: flex;
+}
+
+definition-page section[ng-if="$ctrl.isSingleCharacter"]
+.tts {
+  align-self:center;
 }
 
 definition-page section[ng-if="$ctrl.isSingleCharacter"]
@@ -24,16 +43,19 @@ definition-page section[ng-if="!$ctrl.isSingleCharacter"] {
 }
 
 definition-page section[ng-if="!$ctrl.isSingleCharacter"]
-.term-info {
-  display: inline-flex;
-  word-wrap: normal;
+.tts {
+  display: inline-block;
+}
+
+definition-page  .clickable:hover {
+  background-color: rgba(0, 0, 0, .25);
+  cursor: pointer;
 }
 
 definition-page .tts {
   margin-left: 0.5rem;
   height: 3rem;
   width: 3rem;
-  align-self: center;
   background-color: #c83232;
   border-radius: 50%;
   background-image: url('/images/icons/tts.png');
