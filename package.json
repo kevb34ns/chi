@@ -1,6 +1,7 @@
 {
 	"scripts": {
-		"postinstall": "cd chi && npm install"
+		"postinstall": "cd chi && npm install",
+		"start": "node ./chi/bin/www"
 	},
 	"cacheDirectories": [
 		"chi/node_modules"
