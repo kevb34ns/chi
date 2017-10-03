@@ -7,75 +7,9 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var api = require('./routes/api');
 
 var app = express();
-
-// dictionary database API setup
-let mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/test");
-
-let entrySchema = {
-  traditional: String,
-  simplified: String,
-  pinyin: String,
-  definitions: [String],
-  partOfSpeech: String,
-  tRadical: String,
-  sRadical: String,
-  tStrokes: String,
-  sStrokes: String
-};
-
-let entries = mongoose.model('entries', entrySchema, 'dictionary');
-
-let radicalSchema = {
-  kangXi: String,
-  traditional: String,
-  simplified: String,
-  variants: [String]
-}
-
-let radicals = mongoose.model('radicals', radicalSchema, 'radicals');
-
-app.get('/api/search/:query', function(req, res) {
-  entries.find({$text: {
-      $search: req.params.query,
-      $language: "en"
-    }},
-    { "score": { "$meta": "textScore" } },	
-    function(err, doc) {
-      if (!err) {
-        res.send(doc);
-      } 
-    })
-    .sort({ "score": { "$meta": "textScore"}});
-
-});
-
-// entry object api
-app.get('/api/term/:term', function(req, res) {
-  entries.find({$or: [
-    {traditional: req.params.term}, 
-    {simplified: req.params.term}]},
-   function(err, doc) {
-      if (!err) {
-        console.log (doc);
-        res.send(doc);
-      } 
-    });
-});
-
-// radical collection api
-app.get('/api/radical/:kangXi', function(req, res) {
-  radicals.findOne({ kangXi: req.params.kangXi },
-      function(err, doc) {
-        if (err) {
-          console.log(err);
-        } else {
-          res.send(doc);
-        }
-      });
-});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -91,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
