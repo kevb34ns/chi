@@ -24,14 +24,19 @@
           <label for="nav-rad-str"><div>Strokes and<br>Radicals<div></label>
         </li>
         <li>
-            <input type="radio" id="nav-mea" ng-model="navSelection" value="mea" name="nav">
-            <label for="nav-mea"><div>Measure Words<div></label>
-          </li>
+          <input type="radio" id="nav-mea" ng-model="navSelection" value="mea" name="nav">
+          <label for="nav-mea"><div>Measure Words<div></label>
+        </li>
+        <li>
+          <input type="radio" id="nav-str-ani" ng-model="navSelection" value="str-ani" name="nav">
+          <label for="nav-str-ani"><div>Stroke Order Animations<div></label>
+        </li>
     </nav>
     <section class="content">
       <main-page ng-if="navSelection === 'main'"></main-page>
       <pos-page ng-if="navSelection === 'pos'"></pos-page>
       <rad-str-page ng-if="navSelection === 'rad-str'"></rad-str-page>
+      <str-ani-page ng-if="navSelection === 'str-ani'"><</str-ani-page>
     </section>
 
     <!-- Load Scripts -->
@@ -51,6 +56,7 @@
     <script src="./main-page/main-page.component.js"></script>
     <script src="./pos-page/pos-page.component.js"></script>
     <script src="./rad-str-page/rad-str-page.component.js"></script>
+    <script src="./str-ani-page/str-ani-page.component.js"></script>
     <script src="./core/services/mongo.service.js"></script>
     <script src="./core/services/externalAPI.service.js"></script>
     <!-- Styling -->

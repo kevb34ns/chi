@@ -29,6 +29,15 @@ angular.module('app')
 
     let radical = mongoose.model('radicals', radicalSchema, 'radicals');
 
+    let strokeAnimSchema = {
+      charCode: String,
+      svg: String
+    }
+
+    let strokeAnim = mongoose.model(
+      'strokeAnimations', strokeAnimSchema, 'strokeAnimations');
+
+
     return {
       entryDb: function() {
         return entry;
@@ -36,6 +45,10 @@ angular.module('app')
 
       radicalDb: function() {
         return radical;
+      },
+
+      strokeAnimDb: function() {
+        return strokeAnim;
       }
     }
   }
