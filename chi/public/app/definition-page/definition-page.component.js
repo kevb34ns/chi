@@ -1,8 +1,9 @@
-var definitionController = [
+let definitionController = [
   '$routeParams', '$location', '$scope', 'CacheService', 'APIService',
   function($routeParams, $location, $scope, CacheService, APIService) {
 
-    var ctrl = this;
+    let ctrl = this;
+    let $j = angular.element;
 
     ctrl.isSimplified = CacheService.isSimplified();
     $scope.$watch(() => { return CacheService.isSimplified() },
@@ -16,7 +17,21 @@ var definitionController = [
           entry.pinyin = pinyinify(entry.pinyin);
         });
         ctrl.isSingleCharacter = ctrl.entries[0].traditional.length === 1;
-        ctrl.getRadicals();
+        if (ctrl.isSingleCharacter) {
+          ctrl.getRadicals();
+          // TODO reload SVG if the user switches between simplified/traditional
+          let charCode = ctrl.isSimplified ? 
+              ctrl.entries[0].simplified.charCodeAt(0) :
+              ctrl.entries[0].traditional.charCodeAt(0)
+          APIService.getSVG(charCode)
+            .then((result) => {
+              let xmlDoc = $j.parseXML(result);
+              ctrl.svg = $j(xmlDoc).find('svg');
+              $j('#svg-container').html(ctrl.svg);
+              $j('#svg-container').css('visibility', 'visible');
+            })
+        }
+        
       });
     
       ctrl.getRadicals = function() {
@@ -56,7 +71,8 @@ var definitionController = [
         if (ctrl.entries[0] && Number.isInteger(index) &&
             index >= 0 && index < ctrl.entries[0].traditional.length) {
 
-          $location.path('/definition/' + ctrl.entries[0].traditional.charAt(index));
+          $location.path('/definition/' + 
+              ctrl.entries[0].traditional.charAt(index));
         }
       }
 
@@ -64,6 +80,10 @@ var definitionController = [
         if (term && term.length > 0) {
           $location.path('/definition/' + term);
         }
+      }
+
+      ctrl.reloadSVG = function() {
+        angular.element('#svg-container').html(ctrl.svg);
       }
   }
 ];

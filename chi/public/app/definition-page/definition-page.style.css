@@ -37,6 +37,13 @@ definition-page section[ng-if="$ctrl.isSingleCharacter"]
   flex: auto;
 }
 
+definition-page #svg-container {
+  visibility: none;
+  align-self: stretch;
+  width: 8rem;
+  border: 1px solid #aaa;
+}
+
 /** Multi-character term display */
 definition-page section[ng-if="!$ctrl.isSingleCharacter"] {
   text-align: center;
