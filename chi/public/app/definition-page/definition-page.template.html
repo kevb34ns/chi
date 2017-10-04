@@ -27,8 +27,9 @@
         Strokes: {{ $ctrl.entries[0].tStrokes }}
       </span>
     </section>
-    <section id="svg-container" ng-click="$ctrl.reloadSVG()">
-      
+    <section id="svg-container"></section>
+    <section class="stroke-reload-button" ng-click="$ctrl.reloadSVG()">
+      <span class="glyphicon glyphicon-repeat"></span>
     </section>
   </section>
   <section ng-if="!$ctrl.isSingleCharacter">
