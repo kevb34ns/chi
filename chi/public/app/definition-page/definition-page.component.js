@@ -9,7 +9,9 @@ let definitionController = [
     $scope.$watch(() => { return CacheService.isSimplified() },
         (newVal) => { ctrl.isSimplified = newVal; });
 
-    //TODO handle case where there is no result for this term (err/empty array)
+    //TODO handle case where there is no result for this term (err/empty array),
+    // or when certain fields (strokes, radical, stroke anim) are empty, maybe
+    // send 404s from server to indicate empty fields?
     APIService.getTerm($routeParams.term)
       .then(function(result) {
         ctrl.entries = result;

@@ -27,6 +27,8 @@ router.get('/search/:query', function(req, res) {
   .sort({ "score": { "$meta": "textScore"}});
 });
 
+// TODO bug: there are terms where traditional is different but simplified is
+// the same, resulting in two separate entries being merged (see ci2 (phrase))
 router.get('/term/:term', function(req, res) {
   entries.find({$or: [
     {traditional: req.params.term}, 

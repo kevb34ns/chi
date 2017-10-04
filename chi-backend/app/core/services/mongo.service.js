@@ -15,7 +15,8 @@ angular.module('app')
       tRadical: String,
       sRadical: String,
       tStrokes: String,
-      sStrokes: String
+      sStrokes: String,
+      measureWords: [[String]]
     };
     
     let entry = mongoose.model('entries', entrySchema, 'dictionary');

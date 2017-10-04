@@ -17,12 +17,12 @@ angular.module('app')
        * @return an array of objects, each of which represents a entry.
        */
       search: function(query) {
-        return $http.get("https://chidictionary.herokuapp.com/api/search/" + query)
+        return $http.get("http://localhost:3000/api/search/" + query)
           .then(
             function(response) {
               return response.data;
             }
-          )
+          );
       },
       
       /**
@@ -31,13 +31,12 @@ angular.module('app')
        * @return an array of objects, each of which represents an entry.
        */
       getTerm: function(term) {
-        console.log("https://chidictionary.herokuapp.com/api/term/" + term);
-        return $http.get("https://chidictionary.herokuapp.com/api/term/" + term)
+        return $http.get("http://localhost:3000/api/term/" + term)
           .then(
             function(response) {
               return response.data;
             }
-          )
+          );
       },
 
       /**
@@ -46,10 +45,26 @@ angular.module('app')
        * @return {traditional: String, simplified: String, variants: [String]}
        */
       getRadical: function(kangXi) {
-        return $http.get("https://chidictionary.herokuapp.com/api/radical/" + kangXi)
+        return $http.get("http://localhost:3000/api/radical/" + kangXi)
           .then(function(response) {
             return response.data;
-          })
+          }
+        );
+      },
+
+      /**
+       * Returns a stroke order animation SVG
+       * @param {String} charCode The character code of a Chinese word, which
+       * can be obtained by calling String#charCodeAt(index), where index is
+       * the index of the Chinese word in the string.
+       * @return an SVG file
+       */
+      getSVG: function(charCode) {
+        return $http.get("http://localhost:3000/api/strokes/" + charCode)
+          .then(function(response) {
+            return response.data.svg;
+          }
+        );
       }
     }
   }
