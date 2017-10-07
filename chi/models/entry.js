@@ -10,7 +10,8 @@ let entrySchema = {
   sRadical: String,
   tStrokes: String,
   sStrokes: String,
-  measureWords: [[String]]
+  tMeasureWords: [String],
+  sMeasureWords: [String]
 };
 
 module.exports = mongoose.model('entries', entrySchema, 'dictionary');
