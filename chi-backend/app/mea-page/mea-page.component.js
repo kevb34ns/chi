@@ -41,7 +41,17 @@ let measureWordsController = [
           } while (result)
         }
       }
-    }
+    };
+
+    function removeCLDefinitions(id) {
+      db.updateOne({ _id: id }, { $pull: { definitions: { $regex: /^CL:/ }}},
+        (err) => {
+          if (err) {
+            console.log(err);
+          }
+        }
+      );
+    };
 
     ctrl.updateMeasureWords = function() {
 
@@ -51,6 +61,7 @@ let measureWordsController = [
           if (!err) {
             for (let entry of entryArray) {
               extractAndSetMeasureWords(entry._id, entry.definitions);
+              removeCLDefinitions(entry._id);
             }
           }
         }

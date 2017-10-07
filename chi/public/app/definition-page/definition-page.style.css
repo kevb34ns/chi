@@ -100,3 +100,18 @@ definition-page .glyphicon-repeat {
   bottom: 25%;
   left: 23%;
 }
+
+definition-page .measure-word-container {
+  margin-top: 1rem;
+}
+
+definition-page .measure-word-icon {
+  color: white;
+  background-color: #1e6483;
+  border-radius: 2rem;
+  padding: 0 1rem .1rem 1rem;
+  margin-right: 1rem;
+  font-weight: bold;
+  user-select: none;
+  cursor: default;
+}

@@ -87,6 +87,18 @@ let definitionController = [
       ctrl.reloadSVG = function() {
         angular.element('#svg-container').html(ctrl.svg);
       }
+
+      ctrl.goToWord = function(word) {
+        $location.path('/definition/' + word);
+      }
+
+      ctrl.getMeasureWords = function(index) {
+        let measureWords = ctrl.isSimplified ? 
+            ctrl.entries[index].sMeasureWords : 
+            ctrl.entries[index].tMeasureWords;
+        
+        return measureWords;
+      }
   }
 ];
 

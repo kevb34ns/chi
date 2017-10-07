@@ -51,12 +51,18 @@
 </section>
 <section class="card-view def-container">
   <section class="section-header">Definitions</section>
-  <div ng-repeat="entry in $ctrl.entries" class="definition">
+  <section ng-repeat="entry in $ctrl.entries" class="definition">
     <h4>{{ entry.pinyin }}</h4>
-    <div ng-repeat="def in entry.definitions">
+    <section ng-repeat="def in entry.definitions">
       <strong>{{ $index + 1 }}</strong>  {{ def }}<br>
-    </div>
-  </div>
+    </section>
+    <section class="measure-word-container chinese-chars" ng-if="entry.tMeasureWords && entry.tMeasureWords.length > 0">
+      <span class="measure-word-icon">Measure Words</span>
+      <span ng-repeat="word in $ctrl.getMeasureWords($index)">
+        <span class="clickable" ng-click="$ctrl.goToWord(word)">{{ word }}</span>
+      </span>
+    </section>
+  </section>
 </section>
 
 <link rel="stylesheet" href="/app/definition-page/definition-page.style.css">
