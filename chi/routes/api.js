@@ -7,6 +7,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/test");
 var entries = require('../models/entry');
 var radicals = require('../models/radical');
 var strokeAnimations = require('../models/strokeAnimation');
+var sentences = require('../models/sentence')
 
 // The web server API endpoints
 router.get('/', function(req, res) {
@@ -55,6 +56,18 @@ router.get('/radical/:kangXi', function(req, res) {
 
 router.get('/strokes/:charCode', function(req, res) {
   strokeAnimations.findOne({ charCode: req.params.charCode },
+    function(err, doc) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.send(doc);
+      }
+    });
+});
+
+router.get('/sentences/:query', function(req, res) {
+  let query = new RegExp(req.params.query);
+  sentences.find({ Chinese: { $regex: query }},
     function(err, doc) {
       if (err) {
         console.log(err);
