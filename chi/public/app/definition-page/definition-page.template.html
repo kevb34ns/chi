@@ -12,7 +12,7 @@
       </rb>
       <rt>{{ pinyin }}</rt>
     </ruby>
-    <section class="tts" ng-click="$ctrl.speak()"></section>
+    <section class="circle-button tts" ng-click="$ctrl.speak()"></section>
     <section class='term-info'>
       <span ng-if='$ctrl.isSimplified'>
         <span ng-if='$ctrl.sRadical' class="clickable" ng-click="$ctrl.goToRadical($ctrl.sRadical)">
@@ -28,9 +28,7 @@
       </span>
     </section>
     <section id="svg-container"></section>
-    <section class="stroke-reload-button" ng-click="$ctrl.reloadSVG()">
-      <span class="glyphicon glyphicon-repeat"></span>
-    </section>
+    <section class="circle-button stroke-reload-button" ng-click="$ctrl.reloadSVG()"></section>
   </section>
   <section ng-if="!$ctrl.isSingleCharacter">
     <section class="term-info">
@@ -45,7 +43,7 @@
         </rb>
         <rt>{{ pinyin }}</rt>
       </ruby>
-      <section class="tts" ng-click="$ctrl.speak()"></section>
+      <section class="circle-button tts" ng-click="$ctrl.speak()"></section>
     </section>
   </section>
 </section>
@@ -67,8 +65,8 @@
 <section class="card-view list-container" ng-if="$ctrl.sentences.length > 0">
   <section class="section-header">Usage Examples</section>
   <section ng-repeat="sentence in $ctrl.sentences" class="list-item">
-    <section class="chinese-chars cmn-sentence">{{ sentence.Chinese }}</section>
-    <section>{{ sentence.English }}</section>
+    <section class="chinese-chars cmn-sentence">{{ sentence.cmn }}</section>
+    <section>{{ sentence.eng }}</section>
   </section>
 </section>
 

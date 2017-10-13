@@ -37,3 +37,16 @@ a, a:hover, a:visited, a:link, a:active
 .chinese-chars {
 	font-family: 'Muli', Helvetica, Arial, "Microsoft YaHei", "微软雅黑体", "STHeiti", "华文楷体", sans-serif;
 }
+
+/**
+ * Firefox specific hacks to fix Firefox quirks
+ */
+@-moz-document url-prefix() {
+  rt {
+    /**
+     * Raise <rt> elements above <rb>
+     * Doesn't work in all cases
+     */
+    padding-bottom: 1%;
+  }
+}

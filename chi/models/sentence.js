@@ -1,8 +1,8 @@
 let mongoose = require('mongoose');
 
 let sentenceSchema = {
-  Chinese: String,
-  English: String
+  cmn: String,
+  eng: String
 }
 
 module.exports = mongoose.model('sentences', sentenceSchema, 'sentences');

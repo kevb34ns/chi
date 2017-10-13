@@ -30,7 +30,7 @@ let definitionController = [
               let xmlDoc = $j.parseXML(result);
               ctrl.svg = $j(xmlDoc).find('svg');
               $j('#svg-container').html(ctrl.svg);
-              $j('#svg-container').css('visibility', 'visible');
+              $j('#svg-container').css('display', 'block');
             })
         }
 

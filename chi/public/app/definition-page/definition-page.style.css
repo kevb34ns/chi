@@ -38,7 +38,7 @@ definition-page section[ng-if="$ctrl.isSingleCharacter"]
 }
 
 definition-page #svg-container {
-  visibility: none;
+  display: none;
   align-self: stretch;
   width: 8rem;
   border: 1px solid #aaa;
@@ -59,18 +59,21 @@ definition-page  .clickable:hover {
   cursor: pointer;
 }
 
-definition-page .tts {
+definition-page .circle-button {
   margin-left: 0.5rem;
   height: 3rem;
   width: 3rem;
-  background-color: #c83232;
   border-radius: 50%;
-  background-image: url('/images/icons/tts.png');
-  background-size: 60%;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
   box-shadow: 0 1px 2px 2px rgba(0, 0, 0, .25);
+}
+
+definition-page .tts {
+  background-color: #c83232;
+  background-image: url('/images/icons/tts.png');
+  background-size: 60%;
 }
 
 definition-page .tts:hover {
@@ -78,27 +81,14 @@ definition-page .tts:hover {
 }
 
 definition-page .stroke-reload-button {
-  position: relative;
-  margin-left: 0.5rem;
-  height: 3rem;
-  width: 3rem;
   background-color: #268026;
-  color: white;
-  border-radius: 50%;
+  background-image: url('/images/icons/replay.png');
+  background-size: 80%;
   align-self: center;
-  cursor: pointer;
-  box-shadow: 0 1px 2px 2px rgba(0, 0, 0, .25);
 }
 
 definition-page .stroke-reload-button:hover {
   background-color: #1D611D;
-}
-
-definition-page .glyphicon-repeat {
-  position: absolute;
-  top: 25%;
-  bottom: 25%;
-  left: 23%;
 }
 
 definition-page .measure-word-container {
