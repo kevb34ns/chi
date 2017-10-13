@@ -68,6 +68,8 @@ router.get('/strokes/:charCode', function(req, res) {
 router.get('/sentences/:query', function(req, res) {
   let query = new RegExp(req.params.query);
   sentences.find({ Chinese: { $regex: query }},
+    null,
+    { limit: 5 },
     function(err, doc) {
       if (err) {
         console.log(err);

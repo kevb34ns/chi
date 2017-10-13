@@ -49,9 +49,9 @@
     </section>
   </section>
 </section>
-<section class="card-view def-container">
+<section class="card-view list-container">
   <section class="section-header">Definitions</section>
-  <section ng-repeat="entry in $ctrl.entries" class="definition">
+  <section ng-repeat="entry in $ctrl.entries" class="list-item">
     <h4>{{ entry.pinyin }}</h4>
     <section ng-repeat="def in entry.definitions">
       <strong>{{ $index + 1 }}</strong>  {{ def }}<br>
@@ -62,6 +62,13 @@
         <span class="clickable" ng-click="$ctrl.goToWord(word)">{{ word }}</span>
       </span>
     </section>
+  </section>
+</section>
+<section class="card-view list-container" ng-if="$ctrl.sentences.length > 0">
+  <section class="section-header">Usage Examples</section>
+  <section ng-repeat="sentence in $ctrl.sentences" class="list-item">
+    <section class="chinese-chars cmn-sentence">{{ sentence.Chinese }}</section>
+    <section>{{ sentence.English }}</section>
   </section>
 </section>
 

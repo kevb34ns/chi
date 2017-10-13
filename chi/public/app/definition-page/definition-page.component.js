@@ -33,6 +33,12 @@ let definitionController = [
               $j('#svg-container').css('visibility', 'visible');
             })
         }
+
+        if (ctrl.isSimplified) {
+          ctrl.getSentences(ctrl.entries[0].simplified);
+        } else {
+          ctrl.getSentences(ctrl.entries[0].traditional);
+        }
         
       });
     
@@ -98,6 +104,14 @@ let definitionController = [
             ctrl.entries[index].tMeasureWords;
         
         return measureWords;
+      }
+
+      ctrl.getSentences = function(term) {
+        APIService.getSentences(term)
+          .then((result) => {
+            ctrl.sentences = result;
+          }
+        );
       }
   }
 ];
