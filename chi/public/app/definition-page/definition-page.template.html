@@ -12,6 +12,13 @@
       </rb>
       <rt>{{ pinyin }}</rt>
     </ruby>
+    <chi-ruby simplified="{{$ctrl.entries[0].simplified}}"
+              traditional="{{$ctrl.entries[0].traditional}}"
+              pinyin="{{$ctrl.entries[0].pinyin}}"
+              is-simplified="$ctrl.isSimplified"
+              on-term-clicked="">
+
+    </chi-ruby>
     <section class="circle-button tts" ng-click="$ctrl.speak()"></section>
     <section class='term-info'>
       <span ng-if='$ctrl.isSimplified'>

@@ -1,0 +1,11 @@
+<section>
+  {{ $ctrl.pinyin }}
+</section>
+<section class="chinese-chars def-term">
+  <span ng-if='$ctrl.isSimplified'>
+    {{ $ctrl.simplified }}
+  </span>
+  <span ng-if='!$ctrl.isSimplified'>
+    {{ $ctrl.traditional }}
+  </span>
+</section>
